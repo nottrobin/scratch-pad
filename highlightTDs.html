@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+
+<style type="text/css">
+.base1 { background-color: red; }
+.base2 { background-color: blue; }
+.base3 { background-color: green; }
+.selected { background-color: black; }
+</style>
+
+<script type="text/javascript" language="javascript">
+  <!--
+    // Append a class to an HTML DOM element
+    function addClass(elem,cName) {
+        if(typeof(elem) == 'object' && 'className' in elem && typeof(cName) == 'string' && cName.length > 0) { // Check we have been passed the right arguments
+            var cls = elem.className; // Get the current className
+            if(typeof(cls) == 'string' && (cls.length==0 || cls.charAt(cls.length-1)==' ')) elem.className += cName; // class currently empty, or has trailing space - append new class
+            else elem.className += " " + cName; // Otherwise, put a space first
+            return true; // Success
+        } else return false; // Failure - not passed the right sorts of arguments
+    }
+    // Remove a class from an HTML DOM element
+    function removeClass(elem,cName) {
+        if(typeof(elem) == 'object' && 'className' in elem && typeof(cName) == 'string' && cName.length > 0) { // Check we have been passed the right arguments
+            var classMatch = new RegExp("\\b" + cName + "\\s?\\b"); // Set up match for class name
+            if(elem.className.match(classMatch)) { // Check the cName matches the elements className
+                elem.className = elem.className.replace(classMatch,''); // Do the replace
+                return true; // Success
+            } else return false; // Failure - classname didnt match
+        } else return false; // Failure - not passed the right sorts of arguments
+    }
+    // Takes a <td> elements as an argument, and set it to be the only <td> in the document with the class 'selected'
+    function AssignSeat(ele) {
+        if (document.getElementsByTagName) {
+            var cells = document.getElementsByTagName('td');
+            // Remove the 'selected' class from all 'td's
+            for (var i=0; i<cells.length; i++) {
+                removeClass(cells[i],'selected')
+            }
+            addClass(ele,'selected');
+        }
+    }
+  //-->
+</script>
+
+
+
+</head>
+<body>
+
+<table width="200" border="1">
+  <tr>
+    <td id="a1" class="base1" onClick="AssignSeat(this)">&nbsp;</td>
+    <td id="a2" class="base2" onClick="AssignSeat(this)">&nbsp;</td>
+    <td id="a3" class="base3" onClick="AssignSeat(this)">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="b1" class="base1" onClick="AssignSeat(this)">&nbsp;</td>
+    <td id="b2" class="base2" onClick="AssignSeat(this)">&nbsp;</td>
+    <td id="b3" class="base3" onClick="AssignSeat(this)">&nbsp;</td>
+  </tr>
+</table>
+
+</table>
+</body>
+</html>

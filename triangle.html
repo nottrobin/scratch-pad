@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<script type="text/javascript"><!--
+    function load() {
+        // Get a number from the user
+        var num = window.prompt("please enter a positive integer less than 10");
+        // Check it's 1-9. If not prompt again.
+        while(!num.match(/^[1-9]$/)) {
+            num = window.prompt("That wasn't a positive integer less than 10, try again:");
+        }
+        
+        // Loop "num" times
+        for(var count = num; count > 0; count--) {
+            // To print the line - for each loop, loop (num - loop number) times
+            for(var count2 = count; count2 > 0; count2--) {
+                // Print out the number in a DOM compliant way
+                document.write(num)
+            }
+            // After we've printed out the line, add a line break in a DOM compliant way before doing the next line
+            document.write('<br/>');
+        }
+        
+        return;
+    }
+    //-->
+</script>
+</head>
+<body onload="load()">
+</body>
+</html>

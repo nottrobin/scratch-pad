@@ -1,0 +1,102 @@
+<html>
+<head>
+<script type="text/javascript">
+  <!--
+    var myRequest;
+    var myURL = "thexml.xml";
+    
+    window.onload = function() {
+        // We're gonna get the XML via Ajax request object thingy
+        if (window.XMLHttpRequest) myRequest = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            myRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            if(!myRequest) myRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } else if(window.createRequest) {
+            myRequest = window.createRequest();
+        } else myRequest = false;
+
+        if(myRequest) {
+            // The function that gets called whenever there's a state change on the page
+            myRequest.onreadystatechange = parseResults;
+            // Send the request for the page content
+            myRequest.open("GET", myURL, true);
+            myRequest.send(null);
+        }
+        
+        return;
+    }
+
+    // This reads the XML document and parses it
+    function parseResults() {
+        // If we have reached the final state (page has loaded) and everything's okay start processing the XML
+        if(myRequest.readyState == 4 && myRequest.status == 200) {
+            // Check we have some valid XML
+            if(myRequest.responseXML) {
+                // Get all the listings elements
+                var listingElems = myRequest.responseXML.documentElement.getElementsByTagName('ListingsBU');
+                // Pass these elements
+                addListingsTable(listingElems);
+            }
+        }
+        
+        return;
+    }
+
+    // This creates and adds the data table
+    function addListingsTable(elems) { // DOM compliant - I'm not just using "innerHTML"
+        // Set up the basic table
+        // First create the basic elements
+        var listingsTable = document.createElement('table'); // The table itself
+        var tableHead = document.createElement('thead'); // The headings area
+        var tableBody = document.createElement('tbody'); // The main body of the table, to hold the data
+        var headerRow = document.createElement('tr'); // The row to go inside the headings area
+        var addressHeading = document.createElement('td'); // The address heading area
+        var cityHeading = document.createElement('td'); // The city heading area
+        var stateHeading = document.createElement('td'); // The state heading area
+        // Add text to headings
+        addressHeading.appendChild(document.createTextNode('address'));
+        cityHeading.appendChild(document.createTextNode('city'));
+        stateHeading.appendChild(document.createTextNode('state'));
+        // Put everything together
+        headerRow.appendChild(addressHeading);
+        headerRow.appendChild(cityHeading);
+        headerRow.appendChild(stateHeading);
+        tableHead.appendChild(headerRow);
+        listingsTable.appendChild(tableHead);
+        listingsTable.appendChild(tableBody);
+        
+        // Now finally add the data
+        for(var i=0; i < elems.length; i++) {
+            // Get data for this row
+            var address = elems[i].getElementsByTagName('Address')[0].firstChild.data;
+            var city = elems[i].getElementsByTagName('City')[0].firstChild.data;
+            var state = elems[i].getElementsByTagName('State')[0].firstChild.data;
+            // Add the row to the table
+            var newRow = document.createElement('tr');
+            var addressCell = document.createElement('td');
+            var cityCell = document.createElement('td');
+            var stateCell = document.createElement('td');
+            addressCell.appendChild(document.createTextNode(address));
+            cityCell.appendChild(document.createTextNode(city));
+            stateCell.appendChild(document.createTextNode(state));
+            newRow.appendChild(addressCell);
+            newRow.appendChild(cityCell);
+            newRow.appendChild(stateCell);
+            tableBody.appendChild(newRow);
+        }
+        // Now add the table to the document
+        document.body.appendChild(listingsTable);
+        
+        return;
+    }
+  //-->
+</script>
+<style type="text/css">
+  <!--
+    
+  -->
+</style>
+</head>
+<body>
+</body>
+</html>

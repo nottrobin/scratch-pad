@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Test Case</title>
+<script type="text/javascript">
+//<![CDATA[
+// Modularized Events
+function init28() {
+    document.getElementById('anchor1').onclick = function() {this.parentNode.className = 'blue';};
+    document.getElementById('anchor2').onclick = function() {this.parentNode.className = 'red';};
+    document.getElementById('divtwo').onclick = function() {
+        if(this.className == 'red') this.className = 'blue';
+        else if(this.className == 'blue') this.className = 'red';
+    }
+}
+window.onload = init28;
+////]]>
+</script>
+<style type="text/css"><!--
+    span.control {color: #fff; cursor: pointer;}
+    div {margin: 8px; padding: 8px;}
+    div.red {background: #a00;}
+    div.blue {background: #00a;}
+--></style>
+</head>
+<body>
+  <div id="divone" class="red"><span id="anchor1" class="control">Class Change To Blue</span> - <span id="anchor2" class="control">Class Change To Red</span></div>
+  <div id="divtwo" class="red"><span id="anchor3" class="control">Toggle between Red and Blue</span></div>
+</body>
+</html>

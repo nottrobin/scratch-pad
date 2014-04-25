@@ -1,0 +1,55 @@
+<html>
+<head>
+<script type="text/javascript">
+  <!--
+    var weatherColourElem;
+    var weatherFreqElem;
+    
+    window.onload = function() {
+        // Find the input elements (selects)
+        weatherColourElem = document.getElementById('weatherColour');
+        weatherFreqElem = document.getElementById('weatherFrequency');
+        // Add "onchange" event handlers to these select boxes
+        weatherColourElem.onchange = checkWeather;
+        weatherFreqElem.onchange = checkWeather;
+        // Update the weather now
+        checkWeather();
+    }
+    
+    // This will be called when one of the select boxes changes
+    function checkWeather(evt) {
+        var colour = weatherColourElem.options[weatherColourElem.selectedIndex].value;
+        var frequency = weatherFreqElem.options[weatherFreqElem.selectedIndex].value;
+        var outputElem = document.getElementById('weatherOutput');
+        
+        // Empty the output element first
+        while(outputElem.hasChildNodes()) outputElem.removeChild(outputElem.firstChild);
+        
+        // Now replace the text in it
+        // Set up the text
+        var weatherText;
+        if(colour == 'blue' && frequency == 'steady') weatherText = document.createTextNode('Steady blue, clear view.');
+        else if(colour == 'blue' && frequency == 'flashing') weatherText = document.createTextNode('Flashing blue, clouds due.');
+        else if(colour == 'red' && frequency == 'steady') weatherText = document.createTextNode('Steady red, rain ahead.');
+        else if(colour == 'red' && frequency == 'flashing') weatherText = document.createTextNode('Flashing red, snow instead.');
+        // Add the text to the output element
+        outputElem.appendChild(weatherText);
+    }
+
+  //-->
+</script>
+</head>
+<body>
+  <p id="weatherInput">
+    <select id="weatherColour">
+      <option value="blue" selected="selected">blue</option>
+      <option value="red">red</option>
+    </select>
+    <select id="weatherFrequency">
+      <option value="steady" selected="selected">steady</option>
+      <option value="flashing">flashing</option>
+    </select>
+  </p>
+  <p id="weatherOutput"></p>
+</body>
+</html>

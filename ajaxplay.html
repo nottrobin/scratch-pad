@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script type="text/javascript" src="mootools.js"></script>
+    <script type="text/javascript">
+      <!--
+        var pageURL = window.location.href;
+        var requestCurrentPage = new Ajax(pageURL, {method: 'get'});
+        requestCurrentPage.addEvent(
+            'onComplete',
+            function() {
+                // If no cookie, check response is an html document  
+                if(this.response.text.match(/<html>/i) && this.response.text.match(/\<body\>/i)) {
+                    // Get everything in between the <html> tags
+                    var innerHTMLMatch = /\<body\>((?:.|\n)*)\<\/body\>/im;
+                    var oldInnerHTML = document.getElementsByTagName('body')[0].innerHTML;
+                    var newRequest = innerHTMLMatch.exec(this.response.text);
+                    if(newRequest) {
+                        // Reload if the HTML is different
+                        var newInnerHTML = newRequest[1].replace(/\s|\n|"|'/g,'').toLowerCase();
+                        oldInnerHTML = oldInnerHTML.replace(/\s|\n|"|'/g,'').toLowerCase();
+                        if(newInnerHTML != oldInnerHTML) {
+                            // Set cookie so we know we just reloaded
+                            Cookie.set('jsReloaded','true');
+                            alert('reloading');
+                            window.location.reload();
+                        }
+                    }
+                }
+            }
+        );
+        window.addEvent(
+            'domready',
+            function() {
+                // If we have a cookie telling us we have just reloaded, remove the cookie but don't continue
+                if(Cookie.get('jsReloaded') == 'true') {Cookie.remove('jsReloaded');}
+                else {requestCurrentPage.request();}
+            }
+        );
+      //-->
+    </script>
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>Hello this is a div.</p>
+      <p><strong onclick="request.request()">Check page</strong></p>
+      <p><a href="http://www.google.com">google</a></p>
+      <p id="innerHTML1"></p>
+      <p id="innerHTML2"></p>
+    </div>
+  </body>
+</html>

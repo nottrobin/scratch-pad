@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Number Guessing Game</title>
+<script type="text/javascript">
+    function numberGuessing() {
+        var theNumber = Math.floor(Math.random() * 1000);
+        var userGuesses = new Array();
+        var guessLimit = 10;
+        var guessed = false;
+        var guess; 
+        
+        // For 9 more times...
+        for(var guessNo = 1; guessNo <= guessLimit+1; guessNo++) {
+            if(guessNo == 1) {
+                guess = window.prompt("Please guess the number I'm thinking of (0 - 999). (guess 1 of 10).");
+                continue;
+            }
+            if(!guess) break; // Cancel the game if they press "cancel"
+            userGuesses.push(guess); // Add guess to list
+            if(guess == theNumber) { // They've won
+                guessed = true;
+                alert("Wonderful! You won the game! Here are all the numbers you guessed:\n" + userGuesses.join(","));
+                break; // Break out of the loop
+            }
+            else if(guessNo > 10) alert("Sorry! You lost the game! The number was " + theNumber + ". Here are all the numbers you guessed:\n" + userGuesses.join(","));
+            else if(guess < theNumber) guess = window.prompt("Sorry, "+guess+" was lower than the number I'm thinking of (0 - 999). Please try again (guess " + guessNo + " of 10).");
+            else if(guess > theNumber) guess = window.prompt("Sorry, "+guess+" was higher than the number I'm thinking of (0 - 999). Please try again (guess " + guessNo + " of 10).");
+        }
+    }
+    
+    window.onload = function() {
+        var playAgainLink = document.getElementById('playAgain'); // Get the "play again" link
+        playAgainLink.style.cursor = 'pointer'; // Make it look like a link
+        playAgainLink.style.color = 'blue'; // Make it look like a link
+        playAgainLink.onmouseover = function() {this.style.color = 'red'}; // Make it look like a link
+        playAgainLink.onmouseout = function() {this.style.color = 'blue'}; // Make it look like a link
+        playAgainLink.onclick = numberGuessing; // Make it so when you click on it it starts the game
+        numberGuessing(); // Start the game now
+    }
+</script>
+</head>
+<body>
+<h1>Number Guessing Game</h1>
+<p>Guess a number between 0 and 999 in 10 moves</p>
+<p><span id="playAgain">play again</span></p>
+</body>
+</html>

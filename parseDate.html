@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script type="text/javascript">
+    <!--
+    function parseDate(elem) {
+        var value = elem.value;
+        var matches = value.match(/^(0?\d|[1-3]\d)[\/-]?(0?\d|1\d)(?:[\/-]?(0?\d|\d\d))?$/);
+        if(matches) {
+            var day     = matches[1];
+            var month   = matches[2];
+            var year    = matches[3] || new Date().getYear().toString().slice(1);
+            if(day.length < 2) day = '0' + day;
+            if(month.length < 2) month = '0' + month;
+            if(year.length < 2) year = '0' + year;
+            var date = day + "/" + month + "/" + year;
+            alert(date);
+        } else {
+            alert('invalid date format');
+        }
+        
+        return false;
+    }
+  </script>
+</head>
+<body>
+  <form onsubmit="return parseDate(document.getElementById('date'))">
+    <fieldset>
+      <input type="text" id="date" />
+      <button type="submit">submit</button>
+    </fieldset>
+  </form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<script type="text/javascript">
+function displayBox(e) {
+  var myDiv = document.createElement('div');
+  myDiv.appendChild(document.createTextNode('bla bla bla bla bla bla de bla de de de hello world I am a fish etc')); // put whatever you like in the div
+  myDiv.style.position = "absolute";
+  myDiv.id = "hoverElem";
+  myDiv.style.left = e.clientX;
+  myDiv.style.top = e.clientY;
+
+  var myTimeout = window.setTimeout(function () {document.body.appendChild(myDiv)},1000);
+  
+  this.onmouseout = function() {
+    clearTimeout(myTimeout);
+    if(document.getElementById(myDiv.id)) document.body.removeChild(myDiv);
+  }
+  
+  return;
+}
+</script>
+</head>
+<body>
+<span onmouseover="displayBox(event)">some text</span>
+</body>
+</html>

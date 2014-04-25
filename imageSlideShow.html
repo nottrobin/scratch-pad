@@ -1,0 +1,55 @@
+<html>
+<head>
+<script type="text/javascript">
+    var imageFolder = "/scratch/slideShowImages/";
+    var imageListScript = imageFolder + "listImages.cgi";
+    
+    function ajaxGetFileNames(url, resultsFunction) {
+        // Create new request
+        var request = new XMLHttpRequest();
+        // Create the onreadystatechange function
+        request.onreadystatechange = function() {
+            // Check for a response
+            if(request.readyState == 4 && request.status == 200) {
+                // If we have a response, check if it's XML
+                if(request.responseXML) {
+                    // If it is...
+                    var fileNames = new Array();
+                    // Get all the "file" attributes
+                    var fileElems = request.responseXML.documentElement.getElementsByTagName('file');
+                    for(var count = 0; count < fileElems.length; count++) {
+                        // Add the filename to the array
+                        fileNames.push(fileElems[count].firstChild.data);
+                    }
+                    // Now run the slide show
+                    resultsFunction(fileNames);
+                }
+            }
+        }
+        // Now prepare the request
+        request.open("GET", url, true);
+        // And send it
+        request.send(null);
+    }
+
+    function doSlideShow(imageNames) {
+        for(var x = 0; x < imageNames.length; x++) {
+            var thisImage = new Image();
+            thisImage.src = imageFolder + imageNames[x];
+            thisImage.width = 300;
+            thisImage.height = 200;
+            document.getElementById('mySlideShow').appendChild(thisImage);
+        }
+    }
+
+    window.onload = function() {
+        ajaxGetFileNames(imageListScript,doSlideShow);
+        return;
+    }
+</script>
+</head>
+<body>
+    <div id="mySlideShow">
+    </div>
+</body>
+</html>

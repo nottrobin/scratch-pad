@@ -1,0 +1,24 @@
+<html>
+<head>
+<script type="text/javascript">
+var theArray = new Array();
+for(var i=0; i<100; i++) {
+    theArray.push(Math.floor(10*Math.random()))
+}
+alert(theArray);
+alert(removeDuplicates(theArray));
+
+    function removeDuplicates(array) {
+        for(var i = 0; i < array.length; i++) {
+            for(var j = i+1; j < array.length; j++) {
+                if(array[j] == array[i]) {
+                    array.splice(j,1);
+                    j--; // Check this location again
+                }
+            }
+        }
+        return array;
+    }
+</script>
+</head>
+</html>

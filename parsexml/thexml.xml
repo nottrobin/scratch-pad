@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ListingsBU>
+    <Address>3802 Chesapeake Avenue</Address>
+    <City>Hampton</City>
+    <State>VA</State>
+  </ListingsBU>
+  <ListingsBU>
+    <Address>2505 College Blvd.</Address>
+    <City>Newport News</City>
+    <State>VA</State>
+  </ListingsBU>
+  <ListingsBU>
+    <Address>105 Clipper Court</Address>
+    <City>Williamsburg</City>
+    <State>VA</State>
+   </ListingsBU>
+</NewDataSet>

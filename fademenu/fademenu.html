@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>The awesome JavaScript fade menu</title>
+    <script type="text/javascript" src="mootools-release-1.11.js"></script>
+    <script type="text/javascript" src="FadeMenu.js"></script>
+    <script type="text/javascript">
+      <!--        
+        // When the dom is ready, set up the fade menu
+        window.addEvent('domready',function() {new FadeMenu('fademenu');});
+      //-->
+    </script>
+    <style type="text/css">
+      <!--
+        div#main {clear: both;}
+        table.options th {
+          padding: 5px;
+          text-align: left;
+          border: 1px solid black;
+        }
+        table.options td {
+          border: 1px solid gray;
+          padding: 5px;
+        }
+      //-->
+    </style>
+    <link rel="stylesheet" href="FadeMenu.css" />
+    <!--[if IE]><link rel="stylesheet" href="FadeMenu-ie7.css" /><![endif]-->
+  </head>
+  <body>
+    <h1><a href="FadeMenu.js">FadeMenu.js</a> - The JavaScript fade menu</h1>
+    <ul id="fademenu">
+      <li>
+        <a href="" class="parent">an item</a>
+        <ul>
+          <li><a href="">an item</a></li>
+          <li><a href="">an item</a></li>
+          <li>
+            <a href="" class="parent">an item</a>
+            <ul>
+              <li><a href="">an item</a></li>
+              <li>
+                <a href="" class="parent">an item</a>
+                <ul>
+                  <li><a href="">an item</a></li>
+                  <li><a href="">an item</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="">an item</a></li>
+          <li><a href="">an item</a></li>
+          <li><a href="">an item</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="" class="parent">an item</a>
+        <ul>
+          <li><a href="">an item</a></li>
+          <li><a href="">an item</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div id="main">
+      <p>A class to turn an appropriately styled unordered list (&lt;ul&gt;) into a (potentially multi-tiered) fading javascript menu.</p>
+      <h2>Arguments</h2>
+      <ul>
+        <li>
+          <h3>elem</h3>
+          <p>The list element (any collection of list items) from which to create the menu.</p>
+        </li>
+        <li>
+          <h3>options</h3>
+          <p>An optional object containing the following properties:</p>
+          <table class="options">
+            <tr><th>Property name</th><th>Description</th><th>Default value</th></tr>
+            <tr><td>fadeRecursive</td><td>Specifies whether to apply FadeMenu to nested lists too.</td><td>true</td></tr>
+            <tr><td>fadeInSpeed</td><td>The time in milliseconds for each menu item to fade in</td><td>150</td></tr>
+            <tr><td>fadeOutSpeed</td><td>The time in milliseconds for each menu item to fade out</td><td>100</td></tr>
+            <tr><td>ignoreClass</td><td>You can tell FadeMenu to ignore &lt;ul&gt;s with a specific class</td><td>false</td></tr>
+            <tr><td>fadeOutDelay</td><td>The time in milliseconds after the mouse leaves the menu before it will start to fade out</td><td>100</td></tr>
+          </table>
+        </li>
+      </ul>
+      <h2>Examples</h2>
+      <h3>JavaScript</h3>
+      <code>new FadeMenu('fademenu',{recursive: true, fadeOutDelay: 200});</code>
+      <h3>HTML</h3>
+      <code><pre>
+&lt;ul id="fademenu"&gt;
+  &lt;li&gt;
+    &lt;a href="" class="parent"&gt;an item&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href="" class="parent"&gt;an item&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;
+            &lt;a href="" class="parent"&gt;an item&lt;/a&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="" class="parent"&gt;an item&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=""&gt;an item&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+      </pre></code>
+      <h2>Notes</h2>
+      <ul>
+        <li><p>The JavaScript doesn't style the elements at all (apart from changing the opacity and visibility), so you should style the menu yourself. If you wish you can view <a href="FadeMenu.css">my CSS file</a> which I used for the above menu.</p></li>
+      </ul>
+    </div>
+  </body>
+</html>

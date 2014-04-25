@@ -1,0 +1,63 @@
+#scrollWidget {
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    border: 1px solid gray;
+    font-size: 8pt;
+    color: black;
+    background: none;
+}
+#scrollWidget h1 {
+    margin: 0;
+    padding: 5px;
+    font-size: 14pt;
+}
+#scrollWidget h2 {
+    margin: 0;
+    padding: 5px;
+    font-size: 10pt;
+}
+#scrollWidget p {
+    margin: 0;
+    padding: 5px;
+}
+#scrollWidget ul {
+    margin: 0;
+    padding: 0;
+}
+#scrollWidget ul li {
+}
+#scrollWidget a {
+    color: blue;
+    text-decoration: none;
+    border-bottom: dotted 1px black;
+}
+#scrollWidget h1 a:hover {color: black}
+
+
+#scrollWidgetHeader {
+    background-color: #0cf;
+    text-align: center;
+}
+#scrollWidgetFooter {
+    background-color: #060;
+    text-align: center;
+}
+#scrollWidgetItems {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+.scrollWidgetItem {
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+}
+.scrollWidgetItem img {
+    border: none;
+    float: right;
+    width: 60px;
+    height: 60px;
+}

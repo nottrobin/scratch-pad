@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+<head>
+  <title>selects</title>
+  <script type="text/javascript">
+    <!--
+      // Enable an "optgroup"
+      function enable(elem) {
+          elem.className -= " hidden";
+          elem.disabled = false;
+          return;
+      }
+      // Disable an "optgroup"
+      function disable(elem) {
+          elem.className += " hidden";
+          elem.disabled = true;
+          return;
+      }
+      function limitOptions(parentSelect,childSelect) {
+          var value = parentSelect.options[parentSelect.selectedIndex].value;
+          var optgroups = childSelect.getElementsByTagName('optgroup');
+          // If the value is a number
+          var matches = value.match("^(\\d+)$");
+          // Only show the optgroup with that index
+          if(matches && optgroups[matches[1]-1]) {
+              // Disable all option groups
+              for(var i = 0; i < optgroups.length; i++) disable(optgroups[i]);
+              // Enable option number x
+              enable(optgroups[matches[1]-1]);
+              // Make sure the selectedIndex is within this range
+              var theseOptions = optgroups[matches[1]-1].getElementsByTagName('option');
+              if(childSelect.selectedIndex < theseOptions[0].index || childSelect.selectedIndex > theseOptions[theseOptions.length-1].index)
+                  // If selectedIndex is outside the range of thise optgroup, select the first item
+                  childSelect.selectedIndex = theseOptions[0].index;
+          } else {
+              // Otherwise
+              // Enable all option groups
+              for(var i = 0; i < optgroups.length; i++) enable(optgroups[i]);
+          }
+          
+          return;
+      }
+    //-->
+  </script>
+  <style type="text/css">
+    <!--
+      .hidden {
+          display: none;
+      }
+    -->
+  </style>
+</head>
+<body>
+  <fieldset>
+    <select id="categories" onchange="limitOptions(this,document.getElementById('options'))">
+      <option value="all">all</option>
+      <option value="1">category 1</option>
+      <option value="2">category 2</option>
+      <option value="3">category 3</option>
+      <option value="4">category 4</option>
+    </select>
+    <select id="options">
+      <optgroup id="optgroup1">
+        <option value="opt1">cat 1 opt 1</option>
+        <option value="opt2">cat 1 opt 2</option>
+        <option value="opt3">cat 1 opt 3</option>
+        <option value="opt4">cat 1 opt 4</option>
+      </optgroup>
+      <optgroup id="optgroup2">
+        <option value="opt5">cat 2 opt 5</option>
+        <option value="opt6">cat 2 opt 6</option>
+        <option value="opt7">cat 2 opt 7</option>
+        <option value="opt8">cat 2 opt 8</option>
+      </optgroup>
+      <optgroup id="optgroup3">
+        <option value="opt9">cat 3 opt 9</option>
+        <option value="opt10">cat 3 opt 10</option>
+        <option value="opt11">cat 3 opt 11</option>
+        <option value="opt12">cat 3 opt 12</option>
+      </optgroup>
+      <optgroup id="optgroup4">
+        <option value="opt13">cat 4 opt 13</option>
+        <option value="opt14">cat 4 opt 14</option>
+        <option value="opt15">cat 4 opt 15</option>
+        <option value="opt16">cat 4 opt 16</option>
+      </optgroup>
+    </select>
+  </fieldset>
+</body>
+</html>

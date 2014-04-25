@@ -1,0 +1,42 @@
+#fademenu {
+    float: left;
+    margin: 0 0 16px 0;
+}
+#fademenu ul {
+    padding: 0;
+    margin: 0;
+}
+#fademenu li {
+    list-style: none;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+#fademenu li a {
+    display: block;
+    width: 80px;
+    text-decoration: none;
+    border: 1px solid #fff;
+    color: #606;
+    font-weight: bold;
+    padding: 3px 5px;
+    margin: 5px 10px;
+    text-align: center;
+    background-color: #dcd;
+}
+#fademenu li a.parent {background-color: #cac;}
+#fademenu li a:visited {color: #606;}
+#fademenu li a.active {color: #fff;}
+#fademenu li a:hover {color: #fff;}
+#fademenu li ul {position: absolute;}
+#fademenu li ul li {float: none;}
+#fademenu li ul li ul {width: 500px;}
+#fademenu li ul li ul {margin: -33px 0 0 103px;} /*  For all other browsers */
+@media screen and (-webkit-min-device-pixel-ratio:0){ /* For Safari 3 */
+    #fademenu li ul li ul {margin: -36px 0 0 103px;}
+}
+#fademenu li ul li ul li {float: left;}
+#fademenu li ul li ul li a {margin: 5px 5px;}
+#fademenu li ul li ul li ul {margin: 0;}
+#fademenu li ul li ul li ul li {float: none;}
+#main {clear: both;}

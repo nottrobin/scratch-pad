@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Put HTML in its place: The role of mark-up languages in web pages</title>
+</head>
+<body>
+  <h1>Put <abbr title="HyperText Mark-up Language">HTML</abbr> in its place: The role of mark-up languages in web pages</h1>
+  
+  <p>This article is the first in a series of discussions of the different  client-side technologies for the web that exist and how they can be used to represent data on the internet in as clear and accessible a way as possible. The ultimate conclusion is usually that it is best to comply as closely as possible with the <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a> web standards, and the <a href="http://www.w3.org/WAI/"><abbr title="Web Accessibility Initiative">WAI</abbr></a> accessibility guidelines, but this is often easier said than done, and hopefully this document will give some insight into how to do this.</p>
+    
+  <h2>The Information Highway</h2>
+
+  <p>There is a good reason why the internet is called 'The Information Highway'. The primary goal of the internet is to provide information, or data. Preferably in as many ways as possible (text, graphics, audio, video and any other way we can think of) to as many different sorts of devices as possible.</p>
+  
+  <p>That's right, it isn't just Internet Explorer and Firefox that browse the internet, it's also PDAs, mobile phones, many different types of programmatic robots (including search engine robots - so this article will also help with organic search optimisation), screen readers... believe me the list goes on, and the number of different devices accessing the internet is growing faster than ever. One would be a fool to knowingly alienate many of these devices from accessing their website.</p>
+  
+  <p>And here's the thing: all these different devices support different technologies. You cannot rely on a single web technology being supported by all of them. I'm sure you will have heard something of the recent buzz about web accessibility, well here's the reason: It's not just about screen readers to allow access to the disabled, although that is part of it, the same techniques that let the blind access your site will help mobile phones and PDAs access it also.</p>
+  
+  <p>Hopefully you are now convinced that correct and accessible use of web technologies is worth the squeeze, so let's start looking at how.</p>
+
+  <h2>What is a mark-up language?</h2>
+  
+  <p>HTML is a mark-up language (HTML stands for HyperText Mark-up Language). What does this mean? Mark-up simply means that certain areas of the text are given names, or tags, and a mark-up language defines a set of classes for text. HTML's text classes include P, H1, H2, LINK and so on. So, as a mark-up language, HTML is <strong>purely</strong> meant for classifying different areas of a document.</p>
+  
+  <p>So you can use HTML to say "here is a paragraph" or "here is a heading" or sometimes "here is a table <strong>of data</strong>" but never "this text is in 12 point Arial font", because mark-up is just used for classification, never giving instructions. And each of the tags should be as accurate as possible: a paragraph element should contain a paragraph, a heading element should contain a heading, and a table should contain tabular data (e.g. numerical results from an experiment - laying out your page with a table is incorrect).</p>
+  
+  <p>This very is important, because whatever extra stuff you add to your document (e.g. style-sheets, JavaScript, Flash or other plug-ins) the most basic devices will fall back on the plain mark-up to see the raw data of the page, which should be represented as clearly and concisely as possible in HTML (or <abbr title="eXtensible Mark-up Language">XML</abbr>, but we'll come to that).  How would you expect a screen reader, or even a mobile phone, to read a web site that had a table layout?</p>
+  
+  <p>The bottom line is that no mark-up language should be used to give instructions or control how the document is displayed, it should only be used to classify areas of a document. The display instructions are the job of a style-sheet, probably written in <a href="http://www.w3.org/Style/CSS/"><abbr title="Cascading Style Sheets">CSS</abbr></a> (I will discuss style-sheets in the next article). So if one were to view the pure HTML without any styling it would just look like a basic document, in the default fonts and sizes with all the paragraphs and headings vertically below one another without any layout formatting.</p>
+  
+  <h2>Alternate representation of non-text data</h2>
+  
+  <p>Some devices may only be able to display or otherwise represent plain text. Therefore any non-text content should be represented as plain text as far as possible. Obviously this is not always feasible. For example it is very difficult to represent a video as plain text beyond a simple description.</p>
+  
+  <p>However, an effort should always be made to represent this potentially inaccessible data as plain text. Alternative text should always be provided with images to explain the content of the image, and the same applies to almost all other types of media. Also, abbreviations and acronyms used within the text should be linked to text explaining their meaning.</p>
+  
+  <h2>Standards compliance</h2>
+  
+  <p>HTML is a language and, like any language, has a strict syntax. To make as much of the internet's content accessible to users as possible computer web browsers, like Internet Explorer and Firefox, will attempt to interpret a web page even if the HTML is incorrectly written. However, other devices will almost certainly not be so lenient. To ensure the correct interpretation of your HTML you should write it to comply with one of the HTML standards.</p>
+  
+  <p>There are a number of standards of HTML of varying degrees of strictness. By strictness I basically mean compliance with the above ideals so <a href="http://www.w3.org/TR/html401/">HTML 4.01</a> does not entirely enforce the ideals above whereas <a href="http://www.w3.org/TR/xhtml11/"><abbr title="eXtensible HyperText Mark-up Language">XHTML</abbr> 1.1</a> does (at least in theory). The stricter the standard the more devices will be able to understand the data.</p>
+  
+  <p>HTML 4.01 is the latest version of HTML. This was then superseded by XHTML. The reason for this is that many devices can only understand XML data. XML is a set of rules for writing mark-up, but you can specify your own language. The XML document is linked to namespace which defines the language. XHTML is simply HTML written in a way which is compliant with XML rules so that it can be interpreted by XML readers as well as HTML readers. Therefore XHTML is preferable to HTML. If you would like to define your own mark-up language then it would be perfectly acceptable to represent your data in any other XML format, as most devices can read interpret most XML.</p>
+  
+  <p>One can specify an HTML standard for a document by adding a <a href="http://www.w3.org/QA/2002/04/valid-dtd-list.html">DOCTYPE attribute</a> to the top of your page, and you can use the <a href="http://validator.w3.org/">W3C Markup Validation Service</a> to check that your page does indeed comply with the standard. I do recommend using XHTML 1.1, currently the strictest standard, if at all possible. Note that most devices, including most computer web browsers, will read the DOCTYPE declaration and may parse the page differently for different DOCTYPEs, so once you have specified a DOCTYPE for a document you should make every effort to stick to it.</p>
+  
+  <h2>Well structured and semantic markup</h2>
+  
+  <p>It is important to remember that there is no way to tell how the device that is viewing your web page will display it. You can specify a style-sheet but there is no way to guarantee that the device will pay attention to it or even if it is capable of doing so.</p>
+  
+  <p>Therefore an effort should be made to structure your HTML in a way that makes sense. Headings should be properly nested (e.g. an H1 element should always come before an h2 element).</p>
+  
+  <p>It is also possible that some devices may not be able to interpret the HTML and so the user may be presented with the plain HTML text. In case of this eventuality, semantic mark-up is important. What this basically means is that your mark-up should make sense. The code should be well structured, and the names of classes or IDs that you give to elements should relate to their role within the document.</p>
+  
+  <h2>Example</h2>
+  
+  <p>This may seem like a lot to take in, but by remembering that the role of HTML is purely to classify sections of the document, and that the HTML should be as readable and accessible as possible in any form hopefully most of what I have written here follows on intuitively.</p>
+  
+  <p>To help you on your way to writing valid XHTML, here is an example of a (very short) valid XHTML 1.1 document:</p>
+  
+  <pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;A new document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="navigation"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="index.html"&gt;home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="page_two.html"&gt;page two&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="contact_us.html"&gt;contact us&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div id="main_content"&gt;
+    &lt;h1&gt;Welcome to my new document&lt;/h1&gt;
+    &lt;p&gt;This is a new document I just decided to write. Welcome.&lt;/p&gt;
+    &lt;h2&gt;Section one&lt;/h2&gt;
+    &lt;p&gt;Welcome to section one&lt;/p&gt;
+    &lt;h2&gt;Section two&lt;/h2&gt;
+    &lt;p&gt;Welcome to section two&lt;/p&gt;
+    &lt;p&gt;That's all folks!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+  </pre>
+  
+  <p>Enjoy.</p>
+  <p>Robin Winslow.</p>
+</body>
+</html>

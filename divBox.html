@@ -1,0 +1,163 @@
+<html>
+<head>
+<style type="text/css">
+<!--
+    ul#navigation {
+        display: block;
+        height: 30px;
+        font-size: 8pt;
+        list-style-type: none;
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+    }
+    ul#navigation li {
+        display: block;
+        float: left;
+        padding: 5px 10px;
+        overflow: visible;
+    }
+    ul#navigation li#link1 {width: 50px;}
+    ul#navigation li#link2 {width: 100px;}
+    ul#navigation li#link3 {width: 70px;}
+    ul#navigation li a {
+        height: 16px;
+        padding: 2px;
+        display: block;
+        height: 15px;
+        color: blue;
+        text-decoration: none;
+        border: 1px solid transparent;
+    }
+    ul#navigation li a:hover, ul#navigation li a.hover {
+        height: 14px;
+        color: black;
+        background-color: #ddf;
+        border: 1px solid blue;
+    }
+    ul#navigation li span {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    ul#navigation li#link1 span {width: 150px;}
+    ul#navigation li#link2 span {width: 250px;}
+    ul#navigation li#link3 span {width: 150px;}
+    
+    /* for the div when it comes along */
+    ul#navigation li div {
+        border: 1px solid grey;
+        overflow: auto;
+    }
+    ul#navigation li div p {
+        margin: 1px;
+    }
+    
+    .hidden {
+        position: absolute;
+        left: -9000px;
+    }
+-->
+</style>
+<script type="text/javascript">
+<!--    
+    function setMouseOver() {
+        var lis = document.getElementById('navigation').childNodes;
+        for(var i=0; i < lis.length; i++) {
+            lis[i].onmouseover = showSubMenu;
+        }
+    }
+    
+    function showSubMenu() {
+        this.getElementsByTagName('a')[0].className = 'hover';
+        
+        if(this.getElementsByTagName('div').length > 0 && this.getElementsByTagName('div')[0].className == "hoverDiv") {return;}
+        else {
+            // Create the new div
+            newDiv = document.createElement('div');
+            newDiv.className = "hoverDiv";
+            newDiv.style.width = 0;
+            newDiv.style.height = 0;
+            // Add it
+            this.appendChild(newDiv);
+            // Set the maximum height of the div
+            // Put a limit on how high a div can be
+            var subSpan = this.getElementsByTagName('span')[0];
+            if(subSpan.clientHeight > 100) subSpan.style.height = 100;
+            maxHeight = subSpan.clientHeight;
+            maxWidth = subSpan.clientWidth + 20;
+            
+            var thisPointer = this;
+            var thisInterval = window.setInterval(function() {
+                if(newDiv.clientHeight < maxHeight) newDiv.style.height = newDiv.clientHeight + 10;
+                if(newDiv.clientWidth < maxWidth) newDiv.style.width = newDiv.clientWidth + 10;
+                if(newDiv.clientHeight >= maxHeight && newDiv.clientWidth >= maxWidth) {
+                    // Finish
+                    newSubSpan = subSpan.cloneNode(true);
+                    newSubSpan.className = '';
+                    newDiv.appendChild(newSubSpan);
+                    
+                    // Stop the interval
+                    window.clearInterval(thisInterval)
+                }
+            },50);
+            
+            this.onmouseout = function() {
+                window.clearInterval(thisInterval);
+                this.getElementsByTagName('a')[0].className = '';
+                this.removeChild(this.getElementsByTagName('div')[0]);
+            }
+            
+            return;
+        }
+    }
+    
+    function getTotalOffset(elem) {
+        var offsets = new Object;
+        offsets['top'] = elem.offsetTop;
+        offsets['left'] = elem.offsetLeft;
+        var parentElem = elem.offsetParent;
+        while(!parentElem.tagName.match("^body$","i")) {
+            offsets['top'] += parentElem.offsetTop;
+            offsets['left'] += parentElem.offsetLeft;
+            parentElem = parentElem.offsetParent;
+        }
+        
+        return offsets;
+    }
+    
+    window.onload = setMouseOver;
+//-->
+</script>
+</head>
+<body>
+    <ul id="navigation">
+        <li id="link1">
+            <a href="#">link 1</a>
+            <span class="hidden">
+                <p><a href="#">sub1</a></p>
+                <p><a href="#">long sublink number 2</a></p>
+                <p><a href="#">the third siblink</a></p>
+            </span>
+        </li>
+        <li id="link2">
+            <a href="#">link number 2</a>
+            <span class="hidden">
+                <p><a href="#">sub1</a></p>
+                <p><a href="#">very extremely long subling number 2</a></p>
+                <p><a href="#">the third siblink</a></p>
+                <p><a href="#">the fourth siblink</a></p>
+                <p><a href="#">siblink 5</a></p>
+            </span>
+        </li>
+        <li id="link3">
+            <a href="#">third link</a>
+            <span class="hidden">
+                <p><a href="#">sub1</a></p>
+                <p><a href="#">long sublink number</a></p>
+                <p><a href="#">the third siblink</a></p>
+            </span>
+        </li>
+    </ul>
+</body>
+</html>

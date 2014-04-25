@@ -1,0 +1,109 @@
+<html>
+<head>
+<script type="text/javascript" src="js/searchDoc.js"></script>
+<script type="text/javascript">
+  <!--
+    // When window loads
+    window.onload = function() {
+        // Set the search input to perform search at the time of typing
+        var searchInput = document.getElementById('searchInput');
+        var elementToSearch = document.getElementById('jabberwocky');
+        if(window.getSelection || document.getSelection) {
+            //  If we're dealing with firefox or netscape, set it to do the search 'onkeyup'
+            searchInput.onkeyup = function() {
+              performMultiSearch(this,elementToSearch);
+            }
+        }
+        else if(document.selection) { // If we're dealing with IE, it's a lot more complicated :'(*/
+            // Create a button
+            var myButton = document.createElement('button');
+            // Set the onclick function
+            myButton.onclick = function() {performSingleSearch(this.previousSibling,elementToSearch);}
+            // Also perform search on enter press
+            searchInput.onkeypress = function(evt) {
+                if(!evt) evt = window.event; // for internet explorer
+                if(evt.keyCode == 13) performSingleSearch(theInput,elementToSearch);
+            }
+            myButton.appendChild(document.createTextNode('search'));
+            // Insert the button just after the text box
+            var searchParent = searchInput.parentNode;
+            searchParent.insertBefore(myButton,searchInput.nextSibling);
+        }
+    }
+  //-->
+</script>
+</head>
+<body>
+  <div id="header">
+    <h1>Search the Jabberwocky!</h1>
+    <ul>
+      <li><a href="#header">This navigation</a></li>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#search">Search</a></li>
+      <li><a href="#jabberwocky">the poem</a></li>
+    </ul>
+  </div>
+  <div id="introduction">
+    <h2>The Jabberwocky</h2>
+    <p>The Jabberwocky is a famous poem by Lewis Carol, from "Through the Looking-Glass and What Alice Found There", 1872.</p>
+    <p>It's absolutely fabulous. If you don't know it off by heart, get reading.</p>
+  </div>
+  <div id="search">
+    <h2>Searching</h2>
+    <p>You can use the text box below to search the poem.</p>
+    <fieldset>
+      <legend>Search the Jabberwocky</legend>
+      <input type="text" id="searchInput" />
+    </fieldset>
+  </div>
+  <div id="jabberwocky">
+    <h1>The Jabberwocky</h1>
+    <blockquote>
+      <p>
+        `Twas brillig, and the slithy toves<br />
+        Did gyre and gimble in the wabe:<br />
+        All mimsy were the borogoves,<br />
+        And the mome raths outgrabe.
+      </p>
+      <p>
+        "Beware the Jabberwock, my son!<br />
+        The jaws that bite, the claws that catch!<br />
+        Beware the Jubjub bird, and shun<br />
+        The frumious Bandersnatch!"
+      </p>
+      <p>
+        He took his vorpal sword in hand:<br />
+        Long time the manxome foe he sought-<br />
+        So rested he by the Tumtum tree,<br />
+        And stood awhile in thought.
+      </p>
+      <p>
+        And, as in uffish thought he stood,<br />
+        The Jabberwock, with eyes of flame,<br />
+        Came whiffling through the tulgey wood,<br />
+        And burbled as it came!
+      </p>
+      <p>
+        One, two! One, two! And through and through<br />
+        The vorpal blade went snicker-snack!<br />
+        He left it dead, and with its head<br />
+        He went galumphing back.
+      </p>
+      <p>
+        "And, has thou slain the Jabberwock?<br />
+        Come to my arms, my beamish boy!<br />
+        O frabjous day! Callooh! Callay!"<br />
+        He chortled in his joy.
+      </p>
+      <p>
+        `Twas brillig, and the slithy toves<br />
+        Did gyre and gimble in the wabe;<br />
+        All mimsy were the borogoves,<br />
+        And the mome raths outgrabe.
+      </p>
+    </blockquote>
+    <p><small>Lewis Carol, 1872</small></p>
+  </div>
+</body>
+</html>
+
